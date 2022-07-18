@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { initializeApp } from 'firebase/app';
 import { AuthService } from './auth/auth.service';
 import {firebaseConfig} from './firebase.config'
@@ -9,11 +10,31 @@ import {firebaseConfig} from './firebase.config'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private auth:AuthService){}
+  constructor(private auth:AuthService, private route:Router){
+     this.auth.isLogedIn.subscribe((data) => { return this.isLogedIn = data});
+  }
   isCollapsed = false;
   ngOnit():void{
     initializeApp(firebaseConfig)
   } 
-logout(){
+  isLogedIn:boolean=false;
+ 
+ logout(){
   this.auth.logout()
-}}
+}
+dashbord(){
+  if(this.isLogedIn===false){
+    alert('please login first');
+    return;
+    
+  }
+  else if(this.isLogedIn===true){
+
+    this.route.navigate(['dashbord']);
+  }
+
+}
+forcast(){}
+setting(){}
+
+}

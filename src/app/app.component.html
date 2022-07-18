@@ -25,16 +25,16 @@
             <a routerLink="/auth/signup">Sign-Up Now</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/dashbord">Dashbord</a>
+            <a (click)="dashbord()">Dashbord</a>
           </li>
-          <li nz-menu-item nzMatchRouter>
+          <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
             <a (click)="logout()">logout</a>
           </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="dashbord/forcast">Forcast</a>
+          <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
+            <a (click)="forcast()">Forcast</a>
           </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="dashbord/settings">Settings</a>
+          <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
+            <a (click)="setting()">Settings</a>
           </li>
         </ul>
       </li>

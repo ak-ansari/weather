@@ -15,6 +15,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { AuthModule } from './auth/auth.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashbordModule } from './dashbord/dashbord.module';
 
 
 registerLocaleData(en);
@@ -36,6 +37,7 @@ registerLocaleData(en);
     ReactiveFormsModule,
     AuthModule,
     NgbModule,
+    DashbordModule
    
     
     

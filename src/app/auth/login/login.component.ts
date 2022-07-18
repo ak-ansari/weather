@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
         }
       });
     }
-    this.authService.login(this.validateForm)
+    this.authService.login(this.validateForm);
 
   }
 
