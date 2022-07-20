@@ -24,6 +24,7 @@ export class DashbordComponent implements OnInit {
 
   address: string = '';
   date = new Date();
+  hoursToDisplay=0
   temp: number = 0;
   maxtemp: number = 0;
   mintemp: number = 0;
@@ -34,8 +35,8 @@ export class DashbordComponent implements OnInit {
   feelslike: number = 0;
   cloud: number = 0;
   description: string = '';
-  houre: number = 0;
-  minute: number = 0;
+  houre:any = 0;
+  minute: any = 0;
   ampm: string = '';
   day: number = 0;
   month: number = 0;
@@ -60,18 +61,27 @@ export class DashbordComponent implements OnInit {
       this.day = date.getDate();
       this.month = 1 + date.getMonth();
       this.year = date.getFullYear();
-      let houre = date.getHours();
-      this.minute = date.getMinutes();
-      if (houre > 12) {
-        this.houre = houre - 12;
-        return (this.ampm = 'PM');
-      } else {
-        this.houre = houre;
-        return (this.ampm = 'AM');
+      let tempminute = date.getMinutes();
+      this.minute =0;
+      if(tempminute<10){
+        this.minute=`0${tempminute}`
+      }
+      else{
+        this.minute=tempminute;
       }
     });
   }
   json(data: any) {
+    let str: string = data.currentConditions.datetime;
+    console.log(str)
+    this.houre=parseInt(str.slice(0,2));
+    if(this.houre>12){
+      this.hoursToDisplay=this.houre-12;
+    this.ampm='PM'}
+      else{
+        this.hoursToDisplay=this.houre;
+        this.ampm='AM'
+      }
     this.address = data.resolvedAddress;
     this.temp = data.currentConditions.temp;
     this.maxtemp = data.days[0].tempmax;
@@ -98,7 +108,7 @@ export class DashbordComponent implements OnInit {
       let k=3;
       let forcastTime:any=0;
       let json=data.days;
-      let houre=this.date.getHours();
+      let houre=this.houre;
       let time=houre+k;
       
 
