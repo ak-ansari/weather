@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
@@ -8,11 +8,18 @@ import { AuthService } from '../auth/auth.service';
 })
 export class GuardGuard implements CanActivate {
   status:boolean=false;
-  constructor(private auth:AuthService){}
+  constructor(private auth:AuthService,private router:Router){}
   value:boolean=false;
   
   canActivate() {
-    return this.auth.value;
+    if(this.auth.value===false){
+this.router.navigate(['/auth/login']);
+return this.auth.value;
+    }
+    else{
+      
+      return this.auth.value;
+    }
   }
   
 }

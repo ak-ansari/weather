@@ -1,1 +1,73 @@
-<p>dashbord works!</p>
+<div class="main d-flex flex-wrap">
+  <div class="form d-flex d-block">
+    <form
+      (ngSubmit)="search(input.value); this.searchform.reset()"
+      #searchform="ngForm"
+      class="form m-2 mt-3"
+    >
+      <div class="d-flex">
+        <input
+          style="width: 300px; height: 40px; border-radius: 15px 0 0 15px"
+          type="text"
+          name="search"
+          #input
+          ngModel
+          class="form-control flex-8"
+          placeholder="Enter city to search"
+          (keydown.Enter)="search(input.value); this.searchform.reset()"
+        /><button
+          style="border-radius: 0 15px 15px 0"
+          type="submit"
+          class="flex-2 btn btn-warning"
+        >
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="top-bar d-flex">
+    <div class="address d-flex flex-column mx-1">
+      <h3>{{ address }}</h3>
+    </div>
+    <div class="date d-flex">
+      <h5 class="mx-4 my-auto">{{ day }}/{{ month }}/{{ year }}</h5>
+      <h6 class="my-auto">{{ houre }}:{{ minute }} {{ ampm }}</h6>
+    </div>
+  </div>
+  <div class="d-flex row middle-wraper">
+    <div class="img">
+      <img [src]="imgurl" alt="" class="my-2" />
+    </div>
+    <div class="temprature mx-2">
+      <h1>
+        {{ temp }}<sup>o</sup>
+        <h6>Feels like {{ feelslike }}<sup>o</sup>C</h6>
+      </h1>
+      <h4 class="py-1 mx-1">{{ description }}</h4>
+    </div>
+    <div class="content d-flex">
+      <div>
+        <h6>Humidity : {{ humidity }}</h6>
+        <h6>Pressure: {{ pressure }} MB</h6>
+        <h6>Visibility : {{ visibility }} KMs</h6>
+      </div>
+      <div class="d-flex flex-column mt-1">
+        <h6>Max-temp : {{ maxtemp }}<sup>o</sup>C</h6>
+        <h6>Min-temp : {{ mintemp }}<sup>o</sup>C</h6>
+        <h6>Wind speed : {{ wind }} KMPH</h6>
+        <h6>Cloud Cover : {{ cloud }}</h6>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-wraper d-flex flex-wrap">
+    <div class="text-center d-flex flex-column" *ngFor="let obj of tempAndTime">
+      <h4 class="my-1">{{ obj.time }}</h4>
+      <small>{{ obj.date }}</small>
+      <div>
+        <img [src]="obj.src" alt="" class="my-1" />
+      </div>
+
+      <h4 class="my-1">{{ obj.temp }}<sup>o</sup>C</h4>
+    </div>
+  </div>
+</div>
