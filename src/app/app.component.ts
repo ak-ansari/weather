@@ -15,7 +15,9 @@ export class AppComponent {
   }
   isCollapsed = false;
   ngOnit():void{
-    initializeApp(firebaseConfig)
+    initializeApp(firebaseConfig);
+    this.auth.status().subscribe(value=>this.isLogedIn=value)
+
   } 
   isLogedIn:boolean=false;
  
@@ -23,18 +25,20 @@ export class AppComponent {
   this.auth.logout()
 }
 dashbord(){
-  // if(this.isLogedIn===false){
-  //   alert('please login first');
-  //   return;
+  if(this.isLogedIn===false){
+    alert('please login first');
+    return;
     
-  // }
-  // else if(this.isLogedIn===true){
+  }
+  else if(this.isLogedIn===true){
 
-  //   this.route.navigate(['dashbord']);
-  // }
+    this.route.navigate(['dashbord']);
+  }
 this.route.navigate(['dashbord']);
 }
-forcast(){}
+forcast(){
+  this.route.navigate(['dashbord/forcast'])
+}
 setting(){}
 
 }

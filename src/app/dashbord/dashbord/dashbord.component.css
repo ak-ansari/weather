@@ -1,92 +1,105 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-body{
-    margin: 0;
-    padding: 0;
-    
+body {
+  margin: 0;
+  padding: 0;
 }
-.main{
-    width: 100;
-    margin: 0;
-    padding: 0;
-
-    
+.main {
+  width: 100;
+  margin: 0;
+  padding: 0;
 }
-.top-bar{
-    width: 100vw;
+.top-bar {
+  width: 100vw;
 }
-.address{
-padding: 0;
-margin: 0;
-flex:1;
-width: 50%;
-width:auto; 
-
+.address {
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  width: 50%;
+  width: auto;
 }
-.address h3{
-    padding: 0;
-    margin: 0;
-    
+.address h3 {
+  padding: 0;
+  margin: 0;
 }
-.date{
-    flex:1;
-    display:block;
-    width: 50%;
+.date {
+  flex: 1;
+  display: block;
+  width: 50%;
 }
-.middle-wraper{
-    width: 100%;
-    height: 100% ;
+.date h6 {
+  font-size: large;
+}
+.middle-wraper {
+  width: 100%;
+  height: 100%;
 }
 
-.img{
-    flex:2;
-    text-align: center;
-    justify-content: center;
+.img {
+  flex: 2;
+  text-align: center;
+  justify-content: center;
 }
-.img img{
-    width: 140px;
-    height: 140px;
+.img img {
+  width: 140px;
+  height: 140px;
 }
-.temprature{
-    flex: 3;
+.temprature {
+  flex: 3;
 }
-.temprature h1{
-    font-size: 60px;
+.temprature h1 {
+  font-size: 60px;
 }
-.content{
-   flex: 5;
+.content {
+  flex: 5;
 }
-.content div{
-    flex: 1;
+.content div {
+  flex: 1;
+}
+.content h6 {
+  padding: 8px 2px;
+  color: #CE6A80 ;
+  transition: all 0.4s ease;
+}
+.content > div > h6:hover {
+  color: white;
+  font: 400px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.content h6 span {
+  color: #e895ef;
+}
+.bottom-wraper {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: visible;
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+.bottom-wraper div {
+  margin: 2px auto;
+  width: 150px;
+  height: auto;
+}
 
+.bottom-wraper > div > div > img {
+  width: 80px;
+  height: 80px;
 }
-.content h6{
-    padding: 8px 2px;
+.flex-8 {
+  flex: 8;
 }
-.bottom-wraper{
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: visible;
-    width: 100%;
-    height: auto;
+.flex-2 {
+  flex: 2;
 }
-.bottom-wraper div{
-    margin: 2px auto;
-    width: 150px;
-    height: auto;
-
+.form {
+  margin-top: -50px;
+  margin-bottom: 20px;
 }
-.bottom-wraper>div>div>img{
-    width: 80px; height: 80px;
-}
-.flex-8{flex: 8;
-
-}
-.flex-2{flex: 2;
-
-}
-

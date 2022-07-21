@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: primary;
+    src: url(./assets/Roboto-Light.ttf);
+}
+:root{
+    --yellow:#DBDB3B;
+    --l-yellow:#F9F871;
+    --red:#95364F;
+    --light:#A5ABBD;
+    --green:#18ff84;
+    --orange:#FF1E24;
+    --Blue:#00A7BA;
+    --pink:#CE6A80;
+
+}
+
+.color-yellow{
+color:var(--yellow)
+}
+.color-l-yellow{
+    color: var(--l-yellow);
+}
+.color-red{
+    color:var(--red);
+}
+.color-light{
+    color:var(--light)
+}
+.color-green{
+    color:var(--green)
+
+}
+.color-orange{
+    color:var(--orange)
+}
+.color-fadeBlue{
+    color:var(--Blue);
+}
+.color-pink{
+    color:var(--pink);
+}
+
+.font-primary{
+    font-family: primary;
+}
+.font-primary-i{
+    font-family: primary-italic;
+}
+.font-tine{
+    font-family: tine;
+}
+.font-tini-i{
+    font-family: tine-i;
+}
+.font-bold_{
+    font-family: bold_;
+    
+}
+.font-bold-italic{
+    font-family: bold-italic;
+}
+.font-black_{
+    font-family: black_;
+}.font-black_italic{
+    font-family: black-italic;
+}
+@font-face {
+    font-family: primary-italic;
+    src: url(./assets/Roboto-LightItalic.ttf);
+}
+@font-face {
+    font-family: tine;
+    src: url(./assets/Roboto-Thin.ttf);
+}
+@font-face {
+    font-family: tini-tealic;
+    src: url(./assets/Roboto-ThinItalic.ttf);
+}
+@font-face {
+    font-family: Bold_;
+    src: url(./assets/Roboto-Bold.ttf);
+}
+@font-face {
+    font-family: bold-italic;
+    src: url(./assets/Roboto-BoldItalic.ttf);
+}
+@font-face {
+    font-family: black_;
+    src: url(./assets/Roboto-Black.ttf);
+}
+@font-face {
+    font-family: black-italic;
+    src: url(./assets/Roboto-BlackItalic.ttf);
+}

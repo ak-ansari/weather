@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashbordComponent } from './dashbord/dashbord.component';
-import { GuardGuard } from '../dashbord/guard.guard';
+import { ForcastComponent } from './forcast/forcast.component';
 
-const routes: Routes = [{ path: '', component: DashbordComponent }];
+const routes: Routes = [
+  { path: '', component: DashbordComponent },
+  { path: 'forcast', component: ForcastComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashbordRoutingModule { }
+export class DashbordRoutingModule {}

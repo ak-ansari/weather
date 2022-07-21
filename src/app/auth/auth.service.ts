@@ -36,6 +36,7 @@ export class AuthService {
       .then(()=>this.isLogedIn.next(true))
       .then(()=>this.route.navigate(['dashbord']))
       .catch((error) => {
+        this.isLogedIn.next(false)
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
@@ -57,6 +58,7 @@ export class AuthService {
       .then(() => this.isLogedIn.next(true))
       .then(() => this.route.navigate(['dashbord']))
       .catch((error) => {
+        this.isLogedIn.next(false);
         const errorCode = error.code;
         const errorMessage = error.message;
       });

@@ -13,14 +13,9 @@
         <h1>Weather Mania</h1>
       </a>
     </div>
-    <ul
-      nz-menu
-      nzTheme="dark"
-      nzMode="inline"
-      [nzInlineCollapsed]="isCollapsed"
-    >
-      <li nz-submenu nzOpen nzTitle="menu" nzIcon="menu">
-        <ul>
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="menu" nzIcon="menu"  class="menu" >
+        <ul class="ul">
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/auth/signup">Sign-Up Now</a>
           </li>
@@ -41,24 +36,16 @@
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header>
-      <div class="app-header d-flex align-content-center bg-info">
-        <span
-          class="header-trigger d-flex justify-content-center align-content-center"
-          (click)="isCollapsed = !isCollapsed"
-        >
+    <nz-content class="fullheight">
+      <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
           <i
             class="trigger"
             nz-icon
             [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
           ></i>
         </span>
-
-        <h3>Welcome To Weather Mania</h3>
-      </div>
-    </nz-header>
-    <nz-content class="fullheight">
       <div class="inner-content">
+        
         <router-outlet></router-outlet>
       </div>
     </nz-content>
