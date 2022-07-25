@@ -27,44 +27,44 @@
   </div>
   <div class="top-bar d-flex">
     <div class="address d-flex flex-column mx-1 font-black_italic">
-      <h3 class="text-light">{{ address }}</h3>
+      <h3 class="text-light">{{ currentWeatherData.address }}</h3>
     </div>
     <div class="date d-flex flex-wrap">
       <h5 class="mx-4 my-auto font-primary text-light">
         {{ day }}/{{ month }}/{{ year }}
       </h5>
       <h6 class="my-auto font-primary-i text-warning">
-        {{ hoursToDisplay }}:{{ minute }} {{ ampm }}
+        {{ currentWeatherData.hoursToDisplay }}:{{ minute }} {{ currentWeatherData.ampm }}
       </h6>
-      <h5 class="mx-3 font-bold-italic text-light">Sunrise : {{sunrise}}</h5>
-      <h5 class="font-bold-italic text-light">Sunset : {{sunset}}</h5>
+      <h5 class="mx-3 font-bold-italic text-light">Sunrise : {{ currentWeatherData.sunrise }}</h5>
+      <h5 class="font-bold-italic text-light">Sunset : {{ currentWeatherData.sunset }}</h5>
     </div>
   </div>
   <div class="d-flex row middle-wraper">
     <div class="img">
-      <img [src]="imgurl" alt="" class="my-2" />
+      <img [src]="currentWeatherData.icon" alt="" class="my-2" />
     </div>
     <div class="temprature mx-2">
       <h3 class="text-info">{{ condition }}</h3>
       <h1 class="font-bold_ text-light">
-        {{ temp }}<sup>o</sup>C
+        {{ currentWeatherData.temp }}<sup>o</sup>C
         <h6 class="color-l-yellow font-primary-i">
-          Feels like {{ feelslike }}<sup>o</sup>C
+          Feels like {{ currentWeatherData.feelslike }}<sup>o</sup>C
         </h6>
       </h1>
-      <h4 class="py-1 mx-1 text-light">{{ description }}</h4>
+      <h4 class="py-1 mx-1 text-light">{{ currentWeatherData.description }}</h4>
     </div>
     <div class="content d-flex">
       <div>
-        <h6>Humidity : {{ humidity }}</h6>
-        <h6>Pressure: {{ pressure }} MB</h6>
-        <h6>Visibility : {{ visibility }} KMs</h6>
+        <h6>Humidity : {{ currentWeatherData.humidity }}</h6>
+        <h6>Pressure: {{ currentWeatherData.pressure }} MB</h6>
+        <h6>Visibility : {{ currentWeatherData.visibility }} KMs</h6>
       </div>
       <div class="d-flex flex-column mt-1">
-        <h6>Max-temp : {{ maxtemp }}<sup>o</sup>C</h6>
-        <h6>Min-temp : {{ mintemp }}<sup>o</sup>C</h6>
-        <h6>Wind speed : {{ wind }} KMPH</h6>
-        <h6>Cloud Cover : {{ cloud }}</h6>
+        <h6>Max-temp : {{ currentWeatherData.maxtemp }}<sup>o</sup>C</h6>
+        <h6>Min-temp : {{ currentWeatherData.mintemp }}<sup>o</sup>C</h6>
+        <h6>Wind speed : {{ currentWeatherData.wind }} KMPH</h6>
+        <h6>Cloud Cover : {{ currentWeatherData.cloud }}</h6>
       </div>
     </div>
   </div>
