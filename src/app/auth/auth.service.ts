@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject,observable, Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -11,15 +11,22 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  value:boolean=false;
-  constructor(private route:Router) {
-    this.isLogedIn.subscribe(data=>this.value=data)
-  }
-  isLogedIn:Subject<boolean>= new Subject();
-  status():Observable<boolean>{
-    return this.isLogedIn;
+  value: boolean = false;
+  constructor(private route: Router) {
+    this.isLogedIn.subscribe((data) => (this.value = data));
   }
 
+  subject: Subject<boolean> = new Subject();
+
+  get isLogedIn() {
+    return this.subject;
+  }
+  status(): Observable<boolean> {
+    return this.isLogedIn;
+  }
+  returnValue(): void {
+    this.isLogedIn.next(this.value);
+  }
 
   // signup method
   signUp = (form: any) => {
@@ -31,15 +38,12 @@ export class AuthService {
     )
       .then((userCredential) => {
         const user = userCredential.user;
-        
+        this.returnValue();
       })
-      .then(()=>this.isLogedIn.next(true))
-      .then(()=>this.route.navigate(['dashbord']))
+      .then(() => this.isLogedIn.next(true))
+      .then(() => this.route.navigate(['dashbord/dashbord']))
       .catch((error) => {
-        this.isLogedIn.next(false)
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
+        this.isLogedIn.next(false);
       });
   };
 
@@ -54,9 +58,9 @@ export class AuthService {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log('login succese');
+        this.isLogedIn.next(true);
+        this.route.navigate(['dashbord/dashbord']);
       })
-      .then(() => this.isLogedIn.next(true))
-      .then(() => this.route.navigate(['dashbord']))
       .catch((error) => {
         this.isLogedIn.next(false);
         const errorCode = error.code;
@@ -72,12 +76,10 @@ export class AuthService {
       .then(() => {
         console.log('signed out');
         return this.isLogedIn.next(false);
-        
       })
-      .then(()=>this.route.navigate(['/auth/login']))
+      .then(() => this.route.navigate(['/auth/login']))
       .catch((error) => {
-        console.warn('failed to logout')
+        console.warn('failed to logout');
       });
   }
-
 }

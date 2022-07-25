@@ -15,7 +15,9 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { AuthModule } from './auth/auth.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DashbordModule } from './dashbord/dashbord.module';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 
 registerLocaleData(en);
@@ -37,8 +39,8 @@ registerLocaleData(en);
     ReactiveFormsModule,
     AuthModule,
     NgbModule,
-    DashbordModule
-   
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),  
     
     
   ],
