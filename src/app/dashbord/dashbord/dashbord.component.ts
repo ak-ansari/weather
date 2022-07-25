@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 import { ApiService } from '../api.service';
 import { DashService } from '../dash.service';
 import { dummy } from './jsonDummyData';
-import { currentConditions } from './weatherdatainterface';
-
 @Component({
   selector: 'app-dashbord',
   templateUrl: './dashbord.component.html',
