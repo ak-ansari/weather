@@ -8,12 +8,17 @@ import { dummy } from './jsonDummyData';
   styleUrls: ['./dashbord.component.css'],
 })
 export class DashbordComponent implements OnInit {
+  spin = false;
   constructor(private api: ApiService, private dash: DashService) {}
   search(city: string) {
+    this.spin = true;
+    setInterval(() => {
+      this.spin = false;
+    }, 1000);
     this.tempAndTime = [];
     this.api.getWeather(city).subscribe((value) => {
       this.currentWeatherData = {};
-      this.tempAndTime=[]
+      this.tempAndTime = [];
       this.currentWeatherData = this.dash.json(value);
       this.tempAndTime = this.dash.hourlyWeather(
         value,
@@ -34,7 +39,10 @@ export class DashbordComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentWeatherData = this.dash.json(dummy.data);
-    this.tempAndTime=this.dash.hourlyWeather(dummy.data,this.currentWeatherData.hoursToDisplay)
+    this.tempAndTime = this.dash.hourlyWeather(
+      dummy.data,
+      this.currentWeatherData.hoursToDisplay
+    );
 
     setInterval(() => {
       let date = new Date();
@@ -50,7 +58,4 @@ export class DashbordComponent implements OnInit {
       }
     });
   }
-
- 
-};
-
+}

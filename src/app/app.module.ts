@@ -17,14 +17,10 @@ import { AuthModule } from './auth/auth.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashbordModule } from './dashbord/dashbord.module';
 
-
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,12 +33,9 @@ registerLocaleData(en);
     ReactiveFormsModule,
     AuthModule,
     NgbModule,
-    DashbordModule
-   
-    
-    
+    DashbordModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

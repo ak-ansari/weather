@@ -2,43 +2,23 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { initializeApp } from 'firebase/app';
 import { AuthService } from './auth/auth.service';
-import {firebaseConfig} from './firebase.config'
+import { firebaseConfig } from './firebase.config';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private auth:AuthService, private route:Router){
-     this.auth.isLogedIn.subscribe((data) => { return this.isLogedIn = data});
+  constructor(private auth: AuthService, private route: Router) {
+    this.auth.isLogedIn.subscribe((data) => {
+      return (this.isLogedIn = data);
+    });
   }
   isCollapsed = false;
-  ngOnit():void{
+  ngOnit(): void {
     initializeApp(firebaseConfig);
-    this.auth.status().subscribe(value=>this.isLogedIn=value)
-
-  } 
-  isLogedIn:boolean=false;
- 
- logout(){
-  this.auth.logout()
-}
-dashbord(){
-  if(this.isLogedIn===false){
-    alert('please login first');
-    return;
-    
+    this.auth.status().subscribe((value) => (this.isLogedIn = value));
   }
-  else if(this.isLogedIn===true){
-
-    this.route.navigate(['dashbord']);
-  }
-this.route.navigate(['dashbord']);
-}
-forcast(){
-  this.route.navigate(['dashbord/forcast'])
-}
-setting(){}
-
+  isLogedIn: boolean = false;
 }

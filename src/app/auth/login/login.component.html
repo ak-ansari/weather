@@ -30,18 +30,20 @@
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-    <div nz-row class="login-form-margin">
-      <div nz-col [nzSpan]="12">
-        <a class="login-form-forgot">Forgot password</a>
-      </div>
-    </div>
+    <div nz-row class="login-form-margin"></div>
     <button
       nz-button
       class="login-form-button login-form-margin"
-      nzType="'primary'"
+      nzType="primary"
+      [nzLoading]="isLoadingOne"
     >
       Log in
     </button>
+    <div>
+      <a href="auth/forgot-pass" class="mx-auto text-danger"
+        >forgot passwords</a
+      >
+    </div>
     Or Don't have any account
     <a routerLink="/auth/signup">register now!</a>
   </form>

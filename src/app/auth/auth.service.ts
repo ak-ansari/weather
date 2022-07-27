@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Subject,observable, Observable } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updatePassword,
   signOut,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  value:boolean=false;
-  constructor(private route:Router) {
-    this.isLogedIn.subscribe(data=>this.value=data)
+  value: boolean = false;
+  constructor(private route: Router) {
+    this.isLogedIn.subscribe((data) => (this.value = data));
   }
-  isLogedIn:Subject<boolean>= new Subject();
-  status():Observable<boolean>{
+  isLogedIn: Subject<boolean> = new Subject();
+  status(): Observable<boolean> {
     return this.isLogedIn;
   }
-
 
   // signup method
   signUp = (form: any) => {
@@ -31,12 +32,11 @@ export class AuthService {
     )
       .then((userCredential) => {
         const user = userCredential.user;
-        
       })
-      .then(()=>this.isLogedIn.next(true))
-      .then(()=>this.route.navigate(['dashbord']))
+      .then(() => this.isLogedIn.next(true))
+      .then(() => this.route.navigate(['main/dashbord']))
       .catch((error) => {
-        this.isLogedIn.next(false)
+        this.isLogedIn.next(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         // ..
@@ -56,7 +56,7 @@ export class AuthService {
         console.log('login succese');
       })
       .then(() => this.isLogedIn.next(true))
-      .then(() => this.route.navigate(['dashbord']))
+      .then(() => this.route.navigate(['main/dashbord']))
       .catch((error) => {
         this.isLogedIn.next(false);
         const errorCode = error.code;
@@ -72,12 +72,39 @@ export class AuthService {
       .then(() => {
         console.log('signed out');
         return this.isLogedIn.next(false);
-        
       })
-      .then(()=>this.route.navigate(['/auth/login']))
+      .then(() => this.route.navigate(['/auth/login']))
       .catch((error) => {
-        console.warn('failed to logout')
+        console.warn('failed to logout');
       });
   }
+  //forgot passwords
+  forgot_pass(email: any) {
+    const auth = getAuth();
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert('password reset email is sent to your registered email address');
+      })
+      .then(() => this.route.navigate(['auth/login']))
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert('something went wrong please try again');
+      });
+  }
+  //update pass
+  updatePassword(form: any) {
+    const auth = getAuth();
 
+    const user: any = auth.currentUser;
+    const newPassword = form.pass;
+
+    updatePassword(user, newPassword)
+      .then(() => {
+        alert('passworrd updated succesfully new pass is :' + newPassword);
+      })
+      .catch((error: any) => {
+        alert(error);
+      });
+  }
 }

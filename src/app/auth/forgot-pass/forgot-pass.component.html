@@ -1,0 +1,14 @@
+<div>
+  <form (ngSubmit)="forgotpass(input.value)" #forgotPassForm="ngForm">
+    <input
+      type="email"
+      class="form-control"
+      placeholder="enter your email"
+      name="input"
+      #input
+      ngModel
+    />
+    <button class="btn btn-primary m-2" type="submit">submit</button>
+    <a href="auth/login" class="m-2">back to login</a>
+  </form>
+</div>

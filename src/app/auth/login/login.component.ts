@@ -6,16 +6,18 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   validateForm!: FormGroup;
+  isLoadingOne = false;
 
   submitForm(): void {
+    this.isLoadingOne = true;
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
+      Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
@@ -23,10 +25,13 @@ export class LoginComponent implements OnInit {
       });
     }
     this.authService.login(this.validateForm);
-
   }
 
-  constructor(private fb: FormBuilder,private NzFormModule:NzFormModule,private authService :AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private NzFormModule: NzFormModule,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({

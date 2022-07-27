@@ -1,0 +1,27 @@
+<div class="mx-auto my-6 w-25">
+  <form
+    (ngSubmit)="updatepass(updatePassForm.value); updatePassForm.reset()"
+    #updatePassForm="ngForm"
+  >
+    <input
+      type="password"
+      ngModel
+      #input
+      class="my-1 form-control"
+      name="pass"
+      placeholder="enter new passwords"
+    />
+    <input
+      type="text"
+      ngModel
+      #input
+      class="my-1 form-control"
+      name="repeat_pass"
+      placeholder="re-enter your new passwords"
+    />
+    <p *ngIf="visibility == true" class="text-danger">
+      passwords should be matched
+    </p>
+    <button class="btn btn-info" type="submit">submit</button>
+  </form>
+</div>
