@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  value: boolean = false;
+  value: boolean = true;
   constructor(private route: Router) {
     this.isLogedIn.subscribe((data) => (this.value = data));
   }

@@ -11,7 +11,7 @@
 }
 
 .menu-sidebar {
-  background-color: #1d698e;
+  /* background-color: #1d698e; */
   position: relative;
   z-index: 10;
   height: auto;
@@ -25,6 +25,9 @@
   cursor: pointer;
   transition: all 0.3s, padding 0s;
 }
+.trigger {
+  color: rgb(102, 133, 136);
+}
 
 .trigger:hover {
   color: #18ff84;
@@ -37,7 +40,6 @@
   padding-left: 24px;
   overflow: hidden;
   line-height: 64px;
-  background-color: #1d698e;
   transition: all 0.3s;
 }
 
@@ -68,11 +70,9 @@ nz-header {
   position: relative;
   height: 64px;
   padding: 0;
-  /* background-image: radial-gradient(rgba(11,27,103,1) 0%, rgba(11,27,103,1) 17.3%, rgba(11,27,103,1) 58.8%, rgba(11,27,103,1) 71.4%); */
+  
 }
-ul {
-  background-color: #1d698e;
-}
+
 
 nz-content {
   margin: 24px;
@@ -89,7 +89,6 @@ nz-layout {
       rgba(187, 187, 187, 0.7) 100.2%
     ),
     url("/assets/logos/bg.png");
-  /* background-image: url('../assets/logos/bg.png'); */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -103,9 +102,4 @@ nz-layout {
   font-weight: bold;
   transition: all 0.5s ease-in-out;
 }
-.ul > li > a {
-  color: rgb(255, 255, 255);
-}
-.menu {
-  color: white;
-}
+

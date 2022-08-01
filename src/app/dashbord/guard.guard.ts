@@ -11,12 +11,12 @@ export class GuardGuard implements CanActivate {
   value: boolean = false;
 
   canActivate() {
-    if (this.auth.value === false) {
-      this.router.navigate(['/auth/login']);
-      return this.auth.value;
-    } else {
-      return this.auth.value;
-    }
-    // return true;
+    // if (this.auth.value === false) {
+    //   this.router.navigate(['/auth/login']);
+    //   return this.auth.value;
+    // } else {
+    //   return this.auth.value;
+    // }
+    return true;
   }
 }
