@@ -14,8 +14,10 @@ export class LoginComponent implements OnInit {
 
   submitForm(): void {
     this.isLoadingOne = true;
+    setTimeout(() => {
+    this.isLoadingOne=false  
+    },2000);
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {

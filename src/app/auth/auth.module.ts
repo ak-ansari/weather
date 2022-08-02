@@ -11,6 +11,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 import { NotificationComponent } from './notification/notification.component';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 @NgModule({
   declarations: [LoginComponent, SignUpComponent, ForgotPassComponent, NotificationComponent],
@@ -23,6 +24,7 @@ import { NotificationComponent } from './notification/notification.component';
     NzInputModule,
     NzSelectModule,
     NzButtonModule,
+    NzNotificationModule
   ],
 })
 export class AuthModule {}

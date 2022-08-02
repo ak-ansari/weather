@@ -19,7 +19,7 @@ async authenticationCheck(){
        this.value = true;
      }
    } else {
-     console.log('no available token');
+     this.auth.createBasicNotification('topRight','Error','you are not loggedIn')
      this.value = false;
    }
 }

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
+import {
+  NzNotificationPlacement,
+  NzNotificationService,
+} from 'ng-zorro-antd/notification';
 import jwt_decode from 'jwt-decode';
 import {
   getAuth,
@@ -15,7 +19,10 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   value: boolean = true;
-  constructor(private route: Router) {
+  constructor(
+    private route: Router,
+    private notification: NzNotificationService
+  ) {
     this.isLogedIn.subscribe((data) => (this.value = data));
   }
   isLogedIn: Subject<boolean> = new Subject();
@@ -56,7 +63,7 @@ export class AuthService {
         const user: any = userCredential.user;
         let token = user.accessToken;
         localStorage.setItem('token', token);
-        console.log('login succese');
+        this.createBasicNotification('topRight','Voila!','Welcome to Weather Mania');
       })
       .then(() => this.isLogedIn.next(true))
       .then(() => this.route.navigate(['main/dashbord']))
@@ -73,7 +80,7 @@ export class AuthService {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
-        console.log('signed out');
+        this.createBasicNotification('topRight','Logged out','')
         return this.isLogedIn.next(false);
       })
       .then(() => this.route.navigate(['/auth/login']))
@@ -87,13 +94,13 @@ export class AuthService {
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        alert();
+        this.createBasicNotification('topRight','email sent','a password rest emait is sent to your email address')
       })
       .then(() => this.route.navigate(['auth/login']))
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert('something went wrong please try again');
+        this.createBasicNotification('topRight','Oops!','Somthing went wrong please try again');
       });
   }
   //update pass
@@ -105,25 +112,36 @@ export class AuthService {
 
     updatePassword(user, newPassword)
       .then(() => {
-        alert('passworrd updated succesfully new pass is :' + newPassword);
+        this.createBasicNotification(
+          'topRight',
+          'success',
+          'passworrd updated succesfully : )'
+        );
       })
       .catch((error: any) => {
-        alert(error);
+        this.createBasicNotification('topLeft','Error',error)
       });
 
     //deocode
   }
-  decode(jwtToken:string) {
+  decode(jwtToken: string) {
     try {
       let decoded = jwt_decode(jwtToken);
-      if(decoded){
-
+      if (decoded) {
         return decoded;
       }
-      
     } catch (error) {
-      console.log('invalid token')
+      this.createBasicNotification('topRight','Bed request', 'You are not loggedIn')
     }
   }
-  
+  //notification
+
+  placement = 'topRight';
+
+  createBasicNotification(position: NzNotificationPlacement,title:string,discription:string): void {
+    this.notification.blank(
+      title,discription,
+      { nzPlacement: position }
+    );
+  }
 }

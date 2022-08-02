@@ -1,6 +1,6 @@
 <div class="mx-auto my-6 w-25">
   <form
-    (ngSubmit)="updatepass(updatePassForm.value); updatePassForm.reset()"
+    (ngSubmit)="updatepass(updatePassForm.value)"
     #updatePassForm="ngForm"
   >
     <input
@@ -12,7 +12,7 @@
       placeholder="enter new passwords"
     />
     <input
-      type="text"
+      type="password"
       ngModel
       #input
       class="my-1 form-control"
