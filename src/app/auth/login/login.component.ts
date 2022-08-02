@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { AuthService } from '../auth.service';
 
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     this.isLoadingOne = true;
     setTimeout(() => {
     this.isLoadingOne=false  
-    },2000);
+    },5000);
     if (this.validateForm.valid) {
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
@@ -31,11 +32,17 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private NzFormModule: NzFormModule,
-    private authService: AuthService
+    private authService: AuthService,
+    private route:Router
   ) {}
 
   ngOnInit(): void {
+    let token=localStorage.getItem('token')
+    if(token){
+      let decoded=this.authService.decode(token);
+      if(decoded){
+       this.route.navigate(['main/dashbord'])
+      }}
     this.validateForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],

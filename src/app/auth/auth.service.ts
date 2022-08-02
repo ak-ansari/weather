@@ -39,15 +39,14 @@ export class AuthService {
       form.get('password').value
     )
       .then((userCredential) => {
-        const user = userCredential.user;
+        const user: any = userCredential.user;
+        let token = user.accessToken;
+        localStorage.setItem('token', token);
       })
       .then(() => this.isLogedIn.next(true))
       .then(() => this.route.navigate(['main/dashbord']))
       .catch((error) => {
         this.isLogedIn.next(false);
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
       });
   };
 
@@ -63,10 +62,17 @@ export class AuthService {
         const user: any = userCredential.user;
         let token = user.accessToken;
         localStorage.setItem('token', token);
-        this.createBasicNotification('topRight','Voila!','Welcome to Weather Mania');
+        console.log(token)
       })
       .then(() => this.isLogedIn.next(true))
-      .then(() => this.route.navigate(['main/dashbord']))
+      .then(() => {
+        this.route.navigate(['main/dashbord']);
+        this.createBasicNotification(
+          'topRight',
+          'Voila!',
+          'Welcome to Weather Mania'
+        );
+      })
       .catch((error) => {
         this.isLogedIn.next(false);
         const errorCode = error.code;
@@ -80,7 +86,7 @@ export class AuthService {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
-        this.createBasicNotification('topRight','Logged out','')
+        this.createBasicNotification('topRight', 'Logged out', '');
         return this.isLogedIn.next(false);
       })
       .then(() => this.route.navigate(['/auth/login']))
@@ -94,13 +100,21 @@ export class AuthService {
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        this.createBasicNotification('topRight','email sent','a password rest emait is sent to your email address')
+        this.createBasicNotification(
+          'topRight',
+          'email sent',
+          'a password rest emait is sent to your email address'
+        );
       })
       .then(() => this.route.navigate(['auth/login']))
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        this.createBasicNotification('topRight','Oops!','Somthing went wrong please try again');
+        this.createBasicNotification(
+          'topRight',
+          'Oops!',
+          'Somthing went wrong please try again'
+        );
       });
   }
   //update pass
@@ -119,7 +133,7 @@ export class AuthService {
         );
       })
       .catch((error: any) => {
-        this.createBasicNotification('topLeft','Error',error)
+        this.createBasicNotification('topLeft', 'Error', error);
       });
 
     //deocode
@@ -131,17 +145,22 @@ export class AuthService {
         return decoded;
       }
     } catch (error) {
-      this.createBasicNotification('topRight','Bed request', 'You are not loggedIn')
+      this.createBasicNotification(
+        'topRight',
+        'Bed request',
+        'You are not loggedIn'
+      );
     }
   }
   //notification
 
   placement = 'topRight';
 
-  createBasicNotification(position: NzNotificationPlacement,title:string,discription:string): void {
-    this.notification.blank(
-      title,discription,
-      { nzPlacement: position }
-    );
+  createBasicNotification(
+    position: NzNotificationPlacement,
+    title: string,
+    discription: string
+  ): void {
+    this.notification.blank(title, discription, { nzPlacement: position });
   }
 }

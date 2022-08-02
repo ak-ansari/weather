@@ -25,11 +25,9 @@ async authenticationCheck(){
 }
   canActivate() {
     if (this.value === false) {
-      this.router.navigate(['/auth/login']);
-      return this.value;
-    } else {
-      return this.value;
-    }
+      // this.router.navigate(['/auth/login']);
+    } 
+    return this.value;
     // return true;
   }
 }
