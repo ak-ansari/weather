@@ -10,8 +10,10 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
+import { NotificationComponent } from './notification/notification.component';
+
 @NgModule({
-  declarations: [LoginComponent, SignUpComponent, ForgotPassComponent],
+  declarations: [LoginComponent, SignUpComponent, ForgotPassComponent, NotificationComponent],
   imports: [
     CommonModule,
     FormsModule,

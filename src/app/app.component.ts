@@ -19,6 +19,8 @@ export class AppComponent {
   ngOnit(): void {
     initializeApp(firebaseConfig);
     this.auth.status().subscribe((value) => (this.isLogedIn = value));
+
+    let token = localStorage.getItem('token');
   }
   isLogedIn: boolean = false;
 }

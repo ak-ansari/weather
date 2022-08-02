@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -52,7 +53,9 @@ export class AuthService {
       form.get('password').value
     )
       .then((userCredential) => {
-        const user = userCredential.user;
+        const user: any = userCredential.user;
+        let token = user.accessToken;
+        localStorage.setItem('token', token);
         console.log('login succese');
       })
       .then(() => this.isLogedIn.next(true))
@@ -74,6 +77,7 @@ export class AuthService {
         return this.isLogedIn.next(false);
       })
       .then(() => this.route.navigate(['/auth/login']))
+      .then(() => localStorage.removeItem('token'))
       .catch((error) => {
         console.warn('failed to logout');
       });
@@ -83,7 +87,7 @@ export class AuthService {
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        alert('password reset email is sent to your registered email address');
+        alert();
       })
       .then(() => this.route.navigate(['auth/login']))
       .catch((error) => {
@@ -106,5 +110,20 @@ export class AuthService {
       .catch((error: any) => {
         alert(error);
       });
+
+    //deocode
   }
+  decode(jwtToken:string) {
+    try {
+      let decoded = jwt_decode(jwtToken);
+      if(decoded){
+
+        return decoded;
+      }
+      
+    } catch (error) {
+      console.log('invalid token')
+    }
+  }
+  
 }

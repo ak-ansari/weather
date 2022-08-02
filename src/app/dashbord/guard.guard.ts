@@ -7,16 +7,29 @@ import { AuthService } from '../auth/auth.service';
 })
 export class GuardGuard implements CanActivate {
   status: boolean = false;
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {
+   this.authenticationCheck()
+  }
   value: boolean = false;
-
+async authenticationCheck(){
+   let token = localStorage.getItem('token');
+   if (token) {
+     let decoded = this.auth.decode(token);
+     if (decoded) {
+       this.value = true;
+     }
+   } else {
+     console.log('no available token');
+     this.value = false;
+   }
+}
   canActivate() {
-    // if (this.auth.value === false) {
-    //   this.router.navigate(['/auth/login']);
-    //   return this.auth.value;
-    // } else {
-    //   return this.auth.value;
-    // }
-    return true;
+    if (this.value === false) {
+      this.router.navigate(['/auth/login']);
+      return this.value;
+    } else {
+      return this.value;
+    }
+    // return true;
   }
 }
