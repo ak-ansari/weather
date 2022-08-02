@@ -25,7 +25,7 @@ async authenticationCheck(){
 }
   canActivate() {
     if (this.value === false) {
-      // this.router.navigate(['/auth/login']);
+      this.router.navigate(['/auth/login']);
     } 
     return this.value;
     // return true;
