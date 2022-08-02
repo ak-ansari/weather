@@ -150,6 +150,7 @@ export class AuthService {
         'Bed request',
         'You are not loggedIn'
       );
+      this.route.navigate(['auth/login'])
     }
   }
   //notification
