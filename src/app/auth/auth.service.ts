@@ -75,8 +75,7 @@ export class AuthService {
       })
       .catch((error) => {
         this.isLogedIn.next(false);
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        this.createBasicNotification('topRight','Error',error)
       });
   };
 
