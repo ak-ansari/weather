@@ -16,8 +16,13 @@ import { AuthService } from '../auth.service';
 })
 export class SignUpComponent implements OnInit {
   validateForm!: FormGroup;
+  isLoadingOne:boolean=false;
 
   submitForm(): void {
+    this.isLoadingOne=true;
+    setTimeout(()=>{
+      this.isLoadingOne=false
+    },3000)
     if (this.validateForm.valid) {
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {

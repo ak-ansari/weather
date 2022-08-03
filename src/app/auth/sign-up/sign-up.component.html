@@ -1,65 +1,79 @@
 <div>
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email"
-       class="text-dark fw-bolder font" >E-mail</nz-form-label
+  <form class="border-2" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item class="input">
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="The input is not valid E-mail!"
+      >
+      <nz-input-group nzPrefixIcon="user">
+        <input
+          nz-input
+          formControlName="email"
+          id="email"
+          class="rounded-3 border-2"
+          placeholder="Please enter your email address"
+        />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="input">
+     
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzErrorTip="Please input your password!"
+      >
+      <nz-input-group nzPrefixIcon="lock">
+        <input
+          nz-input
+          type="password"
+          id="password"
+          formControlName="password"
+          (ngModelChange)="updateConfirmValidator()"
+          class="rounded-3 border-2"
+          placeholder="Please enter yout passwords"
+        />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="input">
+     
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+        <nz-input-group nzPrefixIcon="lock">
+        <input
+          class="rounded-3 border-2"
+          nz-input
+          type="password"
+          formControlName="checkPassword"
+          id="checkPassword"
+          placeholder="Please re-enter yout passwords"
+        />
+        </nz-input-group>
+        <ng-template #errorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')"
+            >Please confirm your password!</ng-container
+          >
+          <ng-container *ngIf="control.hasError('confirm')">
+            Two passwords that you enter is inconsistent!
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item> </nz-form-item>
+
+    <nz-form-item nz-row class="register-area" class="btn_div">
+
+         <button
+      nz-button
+      class="login-form-button login-form-margin"
+      nzType="primary"
+      [nzLoading]="isLoadingOne"
     >
-    <nz-form-control
+      Log in
+    </button>
     
-      [nzSm]="14"
-      [nzXs]="24"
-      nzErrorTip="The input is not valid E-mail!"
-    >
-      <input nz-input formControlName="email" id="email"  class="rounded-3 border-2"/>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired
-       class="text-dark fw-bolder font" >Password</nz-form-label
-    >
-    <nz-form-control
-      [nzSm]="14"
-      [nzXs]="24"
-      nzErrorTip="Please input your password!"
-    >
-      <input
-        nz-input
-        type="password"
-        id="password"
-        formControlName="password"
-        (ngModelChange)="updateConfirmValidator()"
-       class="rounded-3 border-2"/>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item >
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired
-       class="text-dark fw-bolder font" >Confirm Password</nz-form-label
-    >
-    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
-      <input
-      class="rounded-3 border-2"
-        nz-input
-        type="password"
-        formControlName="checkPassword"
-        id="checkPassword"
-      />
-      <ng-template #errorTpl let-control>
-        <ng-container *ngIf="control.hasError('required')"
-          >Please confirm your password!</ng-container
-        >
-        <ng-container *ngIf="control.hasError('confirm')">
-          Two passwords that you enter is inconsistent!
-        </ng-container>
-      </ng-template>
-    </nz-form-control>
-  </nz-form-item>
-
-  <nz-form-item> </nz-form-item>
-
-  <nz-form-item nz-row class="register-area">
-    <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary" class="btn btn-primary border rounded-3">Register</button>
-    </nz-form-control>
-  </nz-form-item>
-</form>
+    </nz-form-item>
+  </form>
 </div>

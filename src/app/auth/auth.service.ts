@@ -47,6 +47,7 @@ export class AuthService {
       .then(() => this.route.navigate(['main/dashbord']))
       .catch((error) => {
         this.isLogedIn.next(false);
+        this.createBasicNotification('topRight','Error',error)
       });
   };
 
