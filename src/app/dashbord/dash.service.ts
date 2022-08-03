@@ -101,7 +101,6 @@ export class DashService {
       };
       forcastJson.push(obj);
     }
-    console.log(forcastJson);
     return forcastJson;
   }
 }

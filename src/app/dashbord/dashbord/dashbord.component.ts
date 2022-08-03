@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { DashService } from '../dash.service';
-import { dummy } from './jsonDummyData';
 @Component({
   selector: 'app-dashbord',
   templateUrl: './dashbord.component.html',
@@ -12,6 +11,7 @@ export class DashbordComponent implements OnInit {
   constructor(private api: ApiService, private dash: DashService) {}
   search(city: string) {
     this.spin = true;
+    localStorage.setItem('city',city)
     setInterval(() => {
       this.spin = false;
     }, 1000);
@@ -38,12 +38,17 @@ export class DashbordComponent implements OnInit {
   tempAndTime: Array<any> = [];
 
   ngOnInit(): void {
-    this.currentWeatherData = this.dash.json(dummy.data);
-    this.tempAndTime = this.dash.hourlyWeather(
-      dummy.data,
-      this.currentWeatherData.hoursToDisplay
-    );
-
+    let city:any=localStorage.getItem('city') || 'kota'
+    this.api.getWeather(city).subscribe((value) => {
+      this.currentWeatherData = {};
+      this.tempAndTime = [];
+      this.currentWeatherData = this.dash.json(value);
+      this.tempAndTime = this.dash.hourlyWeather(
+        value,
+        this.currentWeatherData.hoursToDisplay
+      );
+    });
+   
     setInterval(() => {
       let date = new Date();
       this.day = date.getDate();
