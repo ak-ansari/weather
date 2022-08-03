@@ -5,7 +5,7 @@ import { GuardGuard } from './dashbord/guard.guard';
 
 const routes: Routes = [
 
-  { path: '', pathMatch: 'full', redirectTo: 'auth/login' },
+  { path: '', pathMatch: 'full', redirectTo: 'main/dashbord' },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),

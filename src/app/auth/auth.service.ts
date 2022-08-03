@@ -51,22 +51,21 @@ export class AuthService {
   };
 
   //login mehtod
-  login = (form: any) => {
+  login =async (form: any) => {
     const auth = getAuth();
-    signInWithEmailAndPassword(
+   await signInWithEmailAndPassword(
       auth,
       form.get('email').value,
       form.get('password').value
     )
-      .then((userCredential) => {
+      .then( async (userCredential) => {
         const user: any = userCredential.user;
-        let token = user.accessToken;
-        localStorage.setItem('token', token);
-        console.log(token)
+        let token =await user.accessToken;
+         localStorage.setItem('token', token);
       })
       .then(() => this.isLogedIn.next(true))
-      .then(() => {
-        this.route.navigate(['main/dashbord']);
+      .then(async() => {
+        await this.route.navigate(['main/dashbord']);
         this.createBasicNotification(
           'topRight',
           'Voila!',

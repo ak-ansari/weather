@@ -12,18 +12,23 @@ export class GuardGuard implements CanActivate {
   }
   value: boolean = false;
 async authenticationCheck(){
-   let token = localStorage.getItem('token');
-   if (token) {
-     let decoded = this.auth.decode(token);
-     if (decoded) {
-       this.value = true;
-     }
-   } else {
-     this.auth.createBasicNotification('topRight','Error','you are not loggedIn')
-     this.value = false;
-   }
+   
 }
   canActivate() {
+    let token = localStorage.getItem('token');
+    if (token) {
+      let decoded = this.auth.decode(token);
+      if (decoded) {
+        this.value = true;
+      }
+    } else {
+      this.auth.createBasicNotification(
+        'topRight',
+        'Error',
+        'you are not loggedIn'
+      );
+      this.value = false;
+    }
     if (this.value === false) {
       this.router.navigate(['/auth/login']);
     } 

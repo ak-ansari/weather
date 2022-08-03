@@ -13,11 +13,11 @@ export class LoginComponent implements OnInit {
   validateForm!: FormGroup;
   isLoadingOne = false;
 
-  submitForm(): void {
+  async submitForm() {
     this.isLoadingOne = true;
     setTimeout(() => {
-    this.isLoadingOne=false  
-    },5000);
+      this.isLoadingOne = false;
+    }, 5000);
     if (this.validateForm.valid) {
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
@@ -27,22 +27,16 @@ export class LoginComponent implements OnInit {
         }
       });
     }
-    this.authService.login(this.validateForm);
+    await this.authService.login(this.validateForm);
   }
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private route:Router
+    private route: Router
   ) {}
 
   ngOnInit(): void {
-    let token=localStorage.getItem('token')
-    if(token){
-      let decoded=this.authService.decode(token);
-      if(decoded){
-       this.route.navigate(['main/dashbord'])
-      }}
     this.validateForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],

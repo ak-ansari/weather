@@ -17,6 +17,7 @@ export class AppComponent {
   }
   isCollapsed = false;
   ngOnit(): void {
+  
     initializeApp(firebaseConfig);
     this.auth.status().subscribe((value) => (this.isLogedIn = value));
 
