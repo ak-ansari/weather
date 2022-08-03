@@ -61,14 +61,14 @@ body {
 .content div {
   flex: 1;
 }
-.content h6 {
+.content h5 {
   padding: 8px 2px;
-  color: #CE6A80 ;
+  color: white ;
   transition: all 0.4s ease;
 }
-.content > div > h6:hover {
-  color: white;
-  font: 400px;
+.content > div > h5:hover {
+  color: #18ff84;
+  font-size: 25px;
   font-weight: bold;
   cursor: pointer;
 }

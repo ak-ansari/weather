@@ -14,32 +14,29 @@
       </a>
     </div>
     <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="menu" nzIcon="menu" class="menu">
+      <li nz-submenu nzOpen nzTitle="Menu" nzIcon="menu" class="menu">
         <ul class="ul">
           <li nz-menu-item nzMatchRouter>
-            <a (click)="dashbord()">Dashbord</a>
+            <a (click)="dashbord()">Dashboard</a>
           </li>
           <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
-            <a (click)="logout()">logout</a>
+            <a (click)="logout()">Logout</a>
           </li>
           <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
             <a (click)="forcast()">Forcast</a>
           </li>
           <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
             <a nz-dropdown [nzDropdownMenu]="menu">
-              settings
+              Settings
               <i nz-icon nzType="down"></i>
             </a>
             <nz-dropdown-menu #menu="nzDropdownMenu">
               <ul nz-menu nzSelectable>
                 <li nz-menu-item>
                   <a routerLink="main/settings/updatepass" class="text-dark"
-                    >update password</a
+                    >Update Password</a
                   >
                 </li>
-                <!-- <li nz-menu-item>2nd menu item</li> -->
-                <!-- <li nz-menu-item>3rd menu item</li> -->
-                <!-- <li nz-menu-item nzDanger>4th danger item</li> -->
               </ul>
             </nz-dropdown-menu>
           </li>

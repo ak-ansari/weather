@@ -44,25 +44,25 @@ color:var(--yellow)
     font-family: primary;
 }
 .font-primary-i{
-    font-family: primary-italic;
+    font-family: primary;
 }
 .font-tine{
     font-family: tine;
 }
 .font-tini-i{
-    font-family: tine-i;
+    font-family: tine;
 }
 .font-bold_{
     font-family: bold_;
     
 }
 .font-bold-italic{
-    font-family: bold-italic;
+    font-family: bold_;
 }
 .font-black_{
     font-family: black_;
 }.font-black_italic{
-    font-family: black-italic;
+    font-family: black_;
 }
 @font-face {
     font-family: primary-italic;
