@@ -19,12 +19,12 @@
           <li nz-menu-item nzMatchRouter>
             <a (click)="dashbord()">Dashboard</a>
           </li>
-          <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
-            <a (click)="logout()">Logout</a>
           </li>
           <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
             <a (click)="forcast()">Forcast</a>
           </li>
+          <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
+            <a (click)="logout()">Logout</a>
           <li *ngIf="isLogedIn" nz-menu-item nzMatchRouter>
             <a nz-dropdown [nzDropdownMenu]="menu">
               Settings
